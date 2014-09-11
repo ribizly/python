@@ -35,14 +35,18 @@ else:
 	f=args.infile
 	original_email_name=[]
 	for line in f:
+		line.strip().reverse()
 		s2=line.strip().lower().decode("utf8")
-		s3=unicodedata.normalize('NFD',s2)
-		for c in s3:
-			char_type=unicodedata.category(c)
-			if char_type=='Ll' or char_type=="Nd":
-				original_email_name.append(c)
-			original_email_name.reverse()
+		print(s2)
+	s3=unicodedata.normalize('NFD',s2)
+	print(s3)
+	for c in s3:
+		char_type=unicodedata.category(c)
+		if char_type=='Ll' or char_type=="Nd":
+			original_email_name.append(c)
+			print(original_email_name)
+	original_email_name.reverse()
 		#print(original_email_name)
-		new_mail_name=".".join(original_email_name)
-		print("%s@foobar.com" % new_mail_name)
+	new_mail_name=".".join(original_email_name)
+	print("%s@foobar.com" % new_mail_name)
 	

@@ -47,8 +47,22 @@ class Person(object):
         for p in Person.persons:
             print p()
 
-p=Person('Bela','Male',99)
+class Gender(object):
+    def __get__(self,instance,owner):
+        return instance._gender
+    def __set__(self,instance,value):
+        if (value.upper() in ('MALE','FEMALE')):
+            instance._gender=value.upper()
+        else:
+            raise AttributeError("Invalid value from gender")
+
+p1=Person('Bela1','Male',99)
+p2=Person('Bela2','FeMale',100)
+p3=Person('Bela3','Male',98)
+p4=Person('Bela4','FeMale',97)
+p5=Person('Bela5','Male',96)
 # p+=1
 # p._gender='FEMALE'
-p.printAll()
+p1.printAll()
 
+gender=Gender()
